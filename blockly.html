@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockly in Sidebar</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <style>
+        #blockly-container {
+            height: 480px;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="right-sidebar" style="width: 400px; float: right;">
+        <!-- Container for Blockly -->
+        <div id="blockly-container"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var workspace = Blockly.inject('blockly-container', {
+                toolbox: `
+                    <xml>
+                        <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+                            <block type="controls_if"></block>
+                            <block type="logic_compare"></block>
+                        </category>
+                        <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+                            <block type="controls_repeat_ext">
+                                <value name="TIMES">
+                                    <shadow type="math_number">
+                                        <field name="NUM">10</field>
+                                    </shadow>
+                                </value>
+                            </block>
+                            <block type="controls_whileUntil"></block>
+                        </category>
+                        <category name="Math" colour="%{BKY_MATH_HUE}">
+                            <block type="math_number"></block>
+                            <block type="math_arithmetic">
+                                <value name="A">
+                                    <shadow type="math_number">
+                                        <field name="NUM">1</field>
+                                    </shadow>
+                                </value>
+                                <value name="B">
+                                    <shadow type="math_number">
+                                        <field name="NUM">1</field>
+                                    </shadow>
+                                </value>
+                            </block>
+                        </category>
+                        <category name="Text" colour="%{BKY_TEXTS_HUE}">
+                            <block type="text"></block>
+                            <block type="text_print"></block>
+                        </category>
+                    </xml>`
+            });
+        });
+    </script>
+</body>
+</html>
+
